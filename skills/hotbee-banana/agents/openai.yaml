@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee Banana"
-  short_description: "Generate Banana2 / Pro image tasks."
-  default_prompt: "Use HotBee Banana to submit or dry-run a Nano Banana image generation task."
+  display_name: "HotBee Banana2/Pro 图片生成"
+  short_description: "生成 Banana2 / Banana Pro 图片任务。"
+  default_prompt: "使用 HotBee Banana2/Pro 图片生成技能，根据中文提示词提交或 dry-run 图片生成任务。"

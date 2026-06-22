@@ -5,10 +5,12 @@ description: Use when a user wants to parse or collect Xiaohongshu/Rednote note 
 
 # HotBee Rednote Collect
 
+中文名：HotBee 小红书数据采集
+
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
 ```
 
 Use `HOTBEE_API_KEY`, `HOTBEE_REDNOTE_KEY`, or `REDNOTE_KEY`.

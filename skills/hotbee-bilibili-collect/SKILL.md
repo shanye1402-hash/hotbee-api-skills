@@ -5,10 +5,12 @@ description: Use when a user wants to parse or collect Bilibili video data throu
 
 # HotBee Bilibili Collect
 
+中文名：HotBee B站数据采集
+
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call bilibili --url "https://www.bilibili.com/video/BV..."
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call bilibili --url "https://www.bilibili.com/video/BV..."
 ```
 
 Use `HOTBEE_API_KEY` or `HOTBEE_BILIBILI_KEY`.

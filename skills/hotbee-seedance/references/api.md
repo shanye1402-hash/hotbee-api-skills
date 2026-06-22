@@ -19,5 +19,5 @@ Verified from HotBee public bundle and local Seedance skill.
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call seedance --dry-run --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5 --image-url https://example.com/product.png
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call seedance --dry-run --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5 --image-url https://example.com/product.png
 ```

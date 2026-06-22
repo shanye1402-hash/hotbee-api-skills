@@ -5,12 +5,14 @@ description: Use when a user asks for all-web hot rankings, trending topics, 热
 
 # HotBee Hot Rankings
 
+中文名：HotBee 全网热榜
+
 The current HotBee public API bundle does not expose a verified all-web hot-ranking endpoint.
 
 Use this command to show the current contract status:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call hot-rankings --dry-run --text "今天 AI 热榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call hot-rankings --dry-run --text "今天 AI 热榜"
 ```
 
 If the AI client has browsing/search tools, collect current trends from authoritative platform pages and cite sources. Do not invent HotBee endpoint paths.

@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee Rednote"
-  short_description: "Collect Rednote note content."
-  default_prompt: "Use HotBee Rednote to parse a Xiaohongshu note URL."
+  display_name: "HotBee 小红书数据采集"
+  short_description: "解析小红书笔记链接并返回内容数据。"
+  default_prompt: "使用 HotBee 小红书数据采集技能，根据用户给出的笔记链接返回已验证接口支持的数据。"

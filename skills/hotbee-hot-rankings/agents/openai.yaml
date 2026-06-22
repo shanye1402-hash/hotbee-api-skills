@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee Hot Rankings"
-  short_description: "Handle hot-ranking requests safely."
-  default_prompt: "Check current hot-ranking sources or report the missing HotBee endpoint contract."
+  display_name: "HotBee 全网热榜"
+  short_description: "处理全网热榜、热搜和趋势查询。"
+  default_prompt: "使用 HotBee 全网热榜技能，先说明当前 HotBee endpoint 合同状态，再用可用搜索/浏览工具处理热榜需求。"

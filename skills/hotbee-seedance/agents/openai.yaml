@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee Seedance"
-  short_description: "Generate and query Seedance 2.0 videos."
-  default_prompt: "Use HotBee Seedance to submit or dry-run a video generation task."
+  display_name: "HotBee Seedance 2.0 视频生成"
+  short_description: "生成和查询 Seedance 2.0 视频任务。"
+  default_prompt: "使用 HotBee Seedance 2.0 视频生成技能，根据中文需求提交或 dry-run 视频生成任务。"

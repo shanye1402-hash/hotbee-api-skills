@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee Image2"
-  short_description: "Generate and query Image2 image tasks."
-  default_prompt: "Use HotBee Image2 to submit or dry-run an image generation task."
+  display_name: "HotBee Image2 图片生成"
+  short_description: "生成和查询 Image2 图片任务。"
+  default_prompt: "使用 HotBee Image2 图片生成技能，根据中文提示词提交或 dry-run 图片生成任务。"

@@ -11,7 +11,23 @@ shanye1402-hash/hotbee-api-skills
 总安装命令：
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install
+```
+
+安装完成后，终端会直接打印分步中文引导，包括：
+
+- 安装位置。
+- 已安装技能和对应中文名。
+- PowerShell、macOS/Linux 的 `HOTBEE_API_KEY` 设置方式。
+- Codex、Claude Code、通用 AI 的调用示例。
+- 直接命令调用示例。
+- 缺 key、中文乱码、dry-run 等排查说明。
+
+以后需要重新查看引导：
+
+```bash
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 guide
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 guide douyin
 ```
 
 安装后会把所有技能复制到：
@@ -42,18 +58,18 @@ export HOTBEE_API_KEY="YOUR_KEY"
 
 ## 技能清单、独立安装命令、使用示例
 
-| 功能 | Skill 名 | 独立安装命令 | 使用示例 |
-| --- | --- | --- | --- |
-| Image2 | `hotbee-image2` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install image2` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call image2 --prompt "生成一张小红书封面"` |
-| Banana2/Pro | `hotbee-banana` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install banana` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call banana --prompt "产品主图" --model nano-banana-pro` |
-| Seedance 2.0 | `hotbee-seedance` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install seedance` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5` |
-| HappyHorse 1.0 | `hotbee-happyhorse` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install happyhorse` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call happyhorse --dry-run --prompt "电影感产品视频"` |
-| 抖音采集 | `hotbee-douyin-collect` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install douyin` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"` |
-| 小红书采集 | `hotbee-rednote-collect` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install rednote` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"` |
-| B站采集 | `hotbee-bilibili-collect` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install bilibili` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call bilibili --url "https://www.bilibili.com/video/BV..."` |
-| 音视频转文字 | `hotbee-transcript` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install transcript` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call transcript --file-url "https://example.com/video.mp4"` |
-| 全网热榜 | `hotbee-hot-rankings` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install hot-rankings` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call hot-rankings --dry-run --text "今天 AI 热榜"` |
-| 小红书种草码 | `hotbee-rednote-seed-code` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 install rednote-seed-code` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.0 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"` |
+| 功能 ID | Skill 名 | 中文名 | 独立安装命令 | 使用示例 |
+| --- | --- | --- | --- | --- |
+| `image2` | `hotbee-image2` | HotBee Image2 图片生成 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install image2` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call image2 --prompt "生成一张小红书封面"` |
+| `banana` | `hotbee-banana` | HotBee Banana2/Pro 图片生成 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install banana` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call banana --prompt "产品主图" --model nano-banana-pro` |
+| `seedance` | `hotbee-seedance` | HotBee Seedance 2.0 视频生成 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install seedance` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5` |
+| `happyhorse` | `hotbee-happyhorse` | HotBee HappyHorse 1.0 视频生成 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install happyhorse` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call happyhorse --dry-run --prompt "电影感产品视频"` |
+| `douyin` | `hotbee-douyin-collect` | HotBee 抖音数据采集 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install douyin` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"` |
+| `rednote` | `hotbee-rednote-collect` | HotBee 小红书数据采集 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install rednote` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"` |
+| `bilibili` | `hotbee-bilibili-collect` | HotBee B站数据采集 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install bilibili` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call bilibili --url "https://www.bilibili.com/video/BV..."` |
+| `transcript` | `hotbee-transcript` | HotBee 音视频转文字 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install transcript` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call transcript --file-url "https://example.com/video.mp4"` |
+| `hot-rankings` | `hotbee-hot-rankings` | HotBee 全网热榜 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install hot-rankings` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call hot-rankings --dry-run --text "今天 AI 热榜"` |
+| `rednote-seed-code` | `hotbee-rednote-seed-code` | HotBee 小红书种草码 | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 install rednote-seed-code` | `npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"` |
 
 ## Codex / Claude Code 调用
 
@@ -99,6 +115,9 @@ Use the local skill at ~/.agents/skills/hotbee-image2. Dry-run an Image2 request
 
 ```bash
 npm test
+node ./bin/hotbee-skills.mjs list
+node ./bin/hotbee-skills.mjs guide
+node ./bin/hotbee-skills.mjs guide douyin
 node ./bin/hotbee-skills.mjs call image2 --dry-run --prompt "测试"
 node ./bin/hotbee-skills.mjs call douyin --dry-run --text "解析这个视频的播放量 https://v.douyin.com/xxxx/"
 node ./bin/hotbee-skills.mjs call happyhorse --dry-run --prompt "测试"

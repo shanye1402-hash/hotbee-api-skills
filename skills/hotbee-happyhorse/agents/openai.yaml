@@ -1,4 +1,4 @@
 interface:
-  display_name: "HotBee HappyHorse"
-  short_description: "Track HappyHorse contract status safely."
-  default_prompt: "Check whether HappyHorse 1.0 has a verified HotBee endpoint before attempting any call."
+  display_name: "HotBee HappyHorse 1.0 视频生成"
+  short_description: "安全跟踪 HappyHorse 1.0 接口合同状态。"
+  default_prompt: "使用 HotBee HappyHorse 1.0 技能，先确认是否已有公开验证 endpoint，再决定是否能调用。"
