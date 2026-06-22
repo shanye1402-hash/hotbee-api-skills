@@ -26,5 +26,5 @@ Keep `Dy_fans_portrai_VIP` spelling unchanged.
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call douyin --dry-run --text "分析这个达人主页的作品和粉丝画像 https://www.douyin.com/user/xxxx"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call douyin --dry-run --text "分析这个达人主页的作品和粉丝画像 https://www.douyin.com/user/xxxx"
 ```

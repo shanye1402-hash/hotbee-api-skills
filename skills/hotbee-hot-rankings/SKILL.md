@@ -1,20 +1,25 @@
 ---
 name: hotbee-hot-rankings
-description: Use when a user asks for all-web hot rankings, trending topics, 热榜, 热搜, or current cross-platform trend collection. The current HotBee public bundle does not expose a verified hot-ranking endpoint, so use AI browsing/search workflow or report the contract gap.
+description: Use when a user asks for HotBee all-web hot rankings, 热榜, 热搜, trending topics, or Xiaohongshu/Rednote hot-search ranking data. Supports the verified HotBee Xiaohongshu hot-search endpoint and should not invent unverified platform endpoints.
 ---
 
 # HotBee Hot Rankings
 
 中文名：HotBee 全网热榜
 
-The current HotBee public API bundle does not expose a verified all-web hot-ranking endpoint.
+Use the verified Xiaohongshu hot-search endpoint:
 
-Use this command to show the current contract status:
+- Base: `https://www.smsz.xyz/prod-api`
+- Endpoint: `GET /tool/hot/xiaohongshu`
+- Required query: `key`
+- Cost: 5 points per call
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.1 call hot-rankings --dry-run --text "今天 AI 热榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call hot-rankings --dry-run --text "获取小红书热搜榜"
 ```
 
-If the AI client has browsing/search tools, collect current trends from authoritative platform pages and cite sources. Do not invent HotBee endpoint paths.
+Run live only when `HOTBEE_API_KEY` is available or the user passes `--key`. Return the API data fields `datas_info[].title`, `score`, `word_type`, `rank_change`, plus `time` and `tips`.
 
-Read `references/api.md` for the audit status.
+If the user asks for other platforms or true cross-platform aggregation, explain that this skill currently has a verified Xiaohongshu hot-search endpoint only. Do not invent unverified platform endpoints.
+
+Read `references/api.md` for the exact request and response contract.

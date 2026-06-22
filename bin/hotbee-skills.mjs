@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const API_BASE = "https://www.smsz.xyz/prod-api";
-const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.1";
+const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.2";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -100,10 +100,10 @@ const FEATURES = {
     title: "All-Web Hot Rankings",
     zhName: "HotBee 全网热榜",
     keyEnv: ["HOTBEE_API_KEY"],
-    summary: "Hot ranking workflow. No verified HotBee endpoint was found in the public bundle.",
-    summaryZh: "处理热榜/热搜需求；当前公开目录未验证 HotBee 热榜 endpoint，优先走 AI 搜索工作流。",
-    example: 'call hot-rankings --dry-run --text "今天 AI 热榜"',
-    aiExample: "$hotbee-hot-rankings 查今天 AI 相关热榜，并说明数据来源",
+    summary: "Hot ranking workflow with verified Xiaohongshu hot-search endpoint.",
+    summaryZh: "获取小红书热搜榜数据；当前已验证接口为 /tool/hot/xiaohongshu，5 积分/次。",
+    example: 'call hot-rankings --dry-run --text "获取小红书热搜榜"',
+    aiExample: "$hotbee-hot-rankings 获取今天小红书热搜榜数据",
   },
   "rednote-seed-code": {
     skill: "hotbee-rednote-seed-code",
@@ -423,6 +423,11 @@ async function postQuery(endpoint, params) {
   return parseResponse(response);
 }
 
+async function getQuery(endpoint, params) {
+  const response = await fetch(urlWithParams(endpoint, params), { method: "GET" });
+  return parseResponse(response);
+}
+
 async function postForm(endpoint, fields, query = {}) {
   const form = new FormData();
   for (const [key, value] of Object.entries(fields)) {
@@ -471,6 +476,20 @@ function douyinPlan(opts, key) {
   return endpoints;
 }
 
+function hotRankingsPlan(opts, key) {
+  const text = opts.text || opts.prompt;
+  const asksOtherPlatform = /抖音|douyin|微博|weibo|b站|bilibili|哔哩|快手|kuaishou/i.test(text);
+  const asksRednotePlatform = /小红书|xiaohongshu|rednote/i.test(text);
+  if (asksOtherPlatform && !asksRednotePlatform) {
+    return [{
+      title: "未验证平台热榜",
+      unsupported: true,
+      reason: "当前只接入了 HotBee 小红书热搜榜 endpoint: GET /tool/hot/xiaohongshu。其他平台热榜需要官方 OpenAPI 合同。",
+    }];
+  }
+  return [{ title: "小红书热搜榜", transport: "get", endpoint: "/tool/hot/xiaohongshu", params: { key } }];
+}
+
 function buildRequests(feature, opts, key) {
   if (feature === "image2") {
     if (opts.taskId) return [{ title: "Image2 query", transport: "query", endpoint: "/tool/gptimage2/query", params: { key, id: opts.taskId } }];
@@ -496,9 +515,7 @@ function buildRequests(feature, opts, key) {
   if (feature === "happyhorse") {
     return [{ title: "HappyHorse 1.0", unsupported: true, reason: "HotBee public bundle and /catalog/apis anonymous response do not expose a HappyHorse endpoint. Use this skill as guidance until the HotBee endpoint contract is provided." }];
   }
-  if (feature === "hot-rankings") {
-    return [{ title: "全网热榜", unsupported: true, reason: "HotBee public bundle and /catalog/apis anonymous response do not expose a hot-rankings endpoint. The skill provides AI browsing/search workflow guidance instead of a fake API call." }];
-  }
+  if (feature === "hot-rankings") return hotRankingsPlan(opts, key);
   throw new Error(`Unknown feature: ${feature}`);
 }
 
@@ -507,6 +524,7 @@ function requestNeedsKey(request) {
 }
 
 async function executeRequest(request, opts) {
+  if (request.transport === "get") return getQuery(request.endpoint, request.params || {});
   if (request.transport === "json") return postJson(request.endpoint, request.params || {});
   if (request.transport === "query") return postQuery(request.endpoint, request.params || {});
   if (request.transport === "form") return postForm(request.endpoint, request.fields || {}, request.params || {});

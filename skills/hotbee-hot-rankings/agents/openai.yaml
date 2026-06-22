@@ -1,4 +1,4 @@
 interface:
   display_name: "HotBee 全网热榜"
-  short_description: "处理全网热榜、热搜和趋势查询。"
-  default_prompt: "使用 HotBee 全网热榜技能，先说明当前 HotBee endpoint 合同状态，再用可用搜索/浏览工具处理热榜需求。"
+  short_description: "获取小红书热搜榜，并处理热榜、热搜和趋势查询。"
+  default_prompt: "使用 HotBee 全网热榜技能，优先调用已验证的小红书热搜榜接口；其他平台缺少合同则说明范围。"
