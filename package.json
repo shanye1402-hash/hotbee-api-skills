@@ -1,6 +1,6 @@
 {
   "name": "hotbee-api-skills",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Open Agent Skills and one-command CLI for HotBee API workflows.",
   "type": "module",
   "bin": {

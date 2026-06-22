@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const API_BASE = "https://www.smsz.xyz/prod-api";
-const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.3";
+const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.4";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -235,6 +235,7 @@ function parseOptions(argv) {
     title: optionValue(argv, "--title", ""),
     content: optionValue(argv, "--content", ""),
     chId: optionValue(argv, "--ch-id", optionValue(argv, "--ch_id", "")),
+    page: optionValue(argv, "--page", "1"),
     keyword: optionValue(argv, "--keyword", ""),
     cursor: optionValue(argv, "--cursor", "0"),
     maxCursor: optionValue(argv, "--max-cursor", optionValue(argv, "--maxCursor", "0")),
@@ -497,14 +498,24 @@ function douyinPlan(opts, key) {
   } else if (/话题/.test(text)) {
     endpoints.push({ title: "抖音话题详情", endpoint: "/tool/douyin/Dy_hashtag_detail_VIP", body: { ch_id: opts.chId, key } });
   } else if (/关键词|搜索/.test(text) && !url) {
-    endpoints.push({ title: "抖音关键词搜索", endpoint: "/tool/douyin/Dy_search_video_VIP", body: { keyword: opts.keyword || text.replace(/关键词|搜索|视频/g, "").trim(), offset: 0, key } });
+    endpoints.push({
+      title: "抖音关键词搜索",
+      unsupported: true,
+      reason: "HotBee public catalog lists Dy_search_video_VIP, but the current backend probe returns 404. Do not call this endpoint until HotBee provides an updated contract.",
+    });
   } else if (isUser) {
     if (/粉丝画像|年龄|地域|性别|兴趣/.test(text)) endpoints.push({ title: "抖音粉丝画像", endpoint: "/tool/douyin/Dy_fans_portrai_VIP", body: { ...body, key } });
     if (/前20|小程序|免卡密/.test(text)) endpoints.push({ title: "抖音主页前20条视频及小程序", endpoint: "/tool/douyin/Dy_user_video_and_app", body });
-    if (/作品|视频/.test(text)) endpoints.push({ title: "抖音达人主页全量作品", endpoint: "/tool/douyin/Dy_user_video_all_VIP", body: { ...body, key } });
+    if (/达人资料|账号资料|主页资料|用户资料|基础资料/.test(text)) endpoints.push({ title: "抖音达人资料", endpoint: "/tool/douyin/Dy_user_profile_VIP", body: { ...body, userUrl: url, key } });
+    if (/作品|视频|分页|增量|全量/.test(text)) endpoints.push({ title: "抖音达人主页作品列表", endpoint: "/tool/douyin/Dy_user_post_videos_Vip2", body: { ...body, userUrl: url, maxCursor: opts.maxCursor, key } });
     if (!endpoints.length) endpoints.push({ title: "抖音达人综合数据免卡密", endpoint: "/tool/douyin/Dy_user_videos_info", body });
   } else {
-    if (/评论/.test(text)) endpoints.push({ title: "抖音评论采集", endpoint: "/tool/douyin/Dy_video_comments_VIP", body: { ...body, key } });
+    if (/评论/.test(text)) endpoints.push({ title: "抖音全部评论采集", endpoint: "/tool/douyin/Dy_video_all_comments_VIP", body: { video_url: url, page: opts.page, key } });
+    if (/二级评论|评论回复|回复/.test(text)) endpoints.push({
+      title: "抖音二级评论旧接口",
+      unsupported: true,
+      reason: "HotBee public catalog lists Dy_video_comments_reply_VIP, but the current backend probe returns 404. The caller uses Dy_video_all_comments_VIP for confirmed comment collection.",
+    });
     if (/播放量|点赞|评论数|核心数据/.test(text)) endpoints.push({ title: "抖音播放量", endpoint: "/tool/douyin/Dy_video_info_VIP", body: { ...body, key } });
     if (/基础信息|标题|作者|封面|详情/.test(text) || !endpoints.length) endpoints.push({ title: "抖音视频基础信息", endpoint: "/tool/douyin/Dy_video_info", body });
   }
@@ -581,9 +592,10 @@ function buildRequests(feature, opts, key) {
   }
   if (feature === "seedance") {
     if (opts.taskId) return [{ title: "Seedance query", transport: "form", endpoint: "/tool/video/seedance/query", fields: { key, taskId: opts.taskId } }];
-    return [{ title: "Seedance generate", transport: "form", endpoint: "/tool/video/seedance/generate", fields: { key, prompt: opts.prompt, model: opts.model || "Doubao-Seedance-2.0", resolution: opts.resolution, ratio: opts.aspectRatio, duration: opts.duration || "-1" }, params: { referenceImageUrls: opts.imageUrls, referenceVideoUrls: opts.videoUrls, referenceAudioUrls: opts.audioUrls } }];
+    const seedanceRatio = opts.aspectRatio === "auto" ? "adaptive" : opts.aspectRatio;
+    return [{ title: "Seedance generate", transport: "form", endpoint: "/tool/video/seedance/generate", fields: { key, prompt: opts.prompt, model: opts.model || "Doubao-Seedance-2.0", resolution: opts.resolution, ratio: seedanceRatio, duration: opts.duration || "-1" }, params: { referenceImageUrls: opts.imageUrls, referenceVideoUrls: opts.videoUrls, referenceAudioUrls: opts.audioUrls } }];
   }
-  if (feature === "douyin") return douyinPlan(opts, key).map((item) => ({ ...item, transport: "json", params: item.body }));
+  if (feature === "douyin") return douyinPlan(opts, key).map((item) => item.unsupported ? item : ({ ...item, transport: "query", params: item.body }));
   if (feature === "rednote") return [{ title: "小红书笔记采集", transport: "query", endpoint: "/tool/rednote/xhs_note_content", params: { key, note_url: opts.url || extractFirstUrl(opts.text) } }];
   if (feature === "bilibili") return [{ title: "B站视频数据采集", transport: "query", endpoint: "/tool/bilibili/bilibili_video_data", params: { key, video_url: opts.url || extractFirstUrl(opts.text) } }];
   if (feature === "transcript") return [{ title: "音视频转文字", transport: "query", endpoint: "/tool/speech/speechToText", params: { key, file_url: opts.fileUrl || "", video_url: opts.videoUrl || opts.url || extractFirstUrl(opts.text) } }];
@@ -596,7 +608,7 @@ function buildRequests(feature, opts, key) {
 }
 
 function requestNeedsKey(request) {
-  return JSON.stringify(request.params || request.fields || {}).includes('"key"');
+  return JSON.stringify({ params: request.params || {}, fields: request.fields || {} }).includes('"key"');
 }
 
 async function executeRequest(request, opts) {

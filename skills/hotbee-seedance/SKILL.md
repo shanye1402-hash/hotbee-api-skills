@@ -10,13 +10,13 @@ description: Use when a user wants Seedance 2.0 video generation through HotBee/
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call seedance --prompt "<video prompt>"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call seedance --prompt "<video prompt>"
 ```
 
 Query a task:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call seedance --task-id "<task_id>"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call seedance --task-id "<task_id>"
 ```
 
 Use `HOTBEE_API_KEY`, `HOTBEE_SEEDANCE_KEY`, or `SEEDANCE_API_KEY`. Keep generation tasks bounded: 4-15 seconds, reasonable material count, no abuse or bypass.

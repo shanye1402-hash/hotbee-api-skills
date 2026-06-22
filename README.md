@@ -11,7 +11,7 @@ One GitHub project hosts all HotBee-related Open Agent Skills. 安装后会打�
 ## Install All
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install
 ```
 
 After install, the CLI prints:
@@ -25,23 +25,23 @@ After install, the CLI prints:
 You can reopen the guide anytime:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 guide
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 guide douyin
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 guide
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 guide douyin
 ```
 
 ## Install One Skill
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install image2
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install banana
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install seedance
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install happyhorse
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install douyin
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install rednote
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install bilibili
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install transcript
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install hot-rankings
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 install rednote-seed-code
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install image2
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install banana
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install seedance
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install happyhorse
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install douyin
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install rednote
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install bilibili
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install transcript
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install hot-rankings
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install rednote-seed-code
 ```
 
 ## Skill Names / 技能中文名
@@ -80,16 +80,16 @@ Feature-specific env vars are also supported, for example `HOTBEE_IMAGE2_KEY`, `
 ## Direct Calls
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call image2 --prompt "生成一张小红书封面"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call banana --prompt "产品主图" --model nano-banana-pro
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call bilibili --url "https://www.bilibili.com/video/BV..."
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call transcript --file-url "https://example.com/video.mp4"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --text "获取百度和抖音热榜"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --platform all --dry-run
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call image2 --prompt "生成一张小红书封面"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call banana --prompt "产品主图" --model nano-banana-pro
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call bilibili --url "https://www.bilibili.com/video/BV..."
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call transcript --file-url "https://example.com/video.mp4"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call hot-rankings --text "获取百度和抖音热榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call hot-rankings --platform all --dry-run
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
 ```
 
 Use `--dry-run` to preview without spending points.
@@ -121,17 +121,18 @@ The current HotBee public bundle, local skill audit, or provided OpenAPI contrac
 - Image2: `/tool/gptimage2/generate`, `/tool/gptimage2/query`
 - Banana2/Pro: `/tool/nanobanana/draw/generate`, query through `/tool/gptimage2/query`
 - Seedance 2.0: `/tool/video/seedance/generate`, `/tool/video/seedance/query`
-- Douyin: documented Douyin endpoint set under `/tool/douyin/...`
+- Douyin confirmed executable routes: `/tool/douyin/Dy_video_info`, `/Dy_video_info_VIP`, `/Dy_video_info_VIP2`, `/Dy_video_all_comments_VIP`, `/Dy_user_profile_VIP`, `/Dy_user_post_videos_Vip2`, `/Dy_user_video_and_app`, `/Dy_user_videos_info`, `/Dy_fans_portrai_VIP`, `/Dy_hashtag_detail_VIP`, `/Dy_hashtag_video_list_VIP`
 - Rednote collection: `/tool/rednote/xhs_note_content`
 - Bilibili collection: `/tool/bilibili/bilibili_video_data`
 - Audio/video transcript: `/tool/speech/speechToText`
 - Hot rankings: `GET /tool/hot/xiaohongshu`, `/tool/hot/douyin`, `/tool/hot/baidu`, `/tool/hot/weibo`, `/tool/hot/bilibili`
 - Rednote seed code: `/tool/rednote/rednote_publish`
 
-Not yet verified in HotBee public docs:
+Not yet verified or not safe to call by default:
 
 - HappyHorse 1.0 endpoint.
 - Other-platform hot-ranking endpoints beyond Xiaohongshu, Douyin, Baidu, Weibo, and Bilibili.
+- Stale Douyin public-catalog paths that currently probe as `404 Not Found`: `/Dy_convert_share_url`, `/Dy_search_video_VIP`, `/Dy_video_comments_VIP`, `/Dy_video_comments_list_VIP`, `/Dy_video_comments_reply_VIP`, `/Dy_user_info_VIP`, `/Dy_user_video_all_VIP`, `/Dy_user_video_page_VIP`.
 
 HappyHorse and unverified ranking platforms still respond safely and do not fake live HotBee API calls. Confirmed hot-ranking platforms are wired to real endpoints and use missing-key protection before live calls.
 

@@ -10,7 +10,7 @@ description: Use when a user wants audio or video converted to text through HotB
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call transcript --file-url "https://example.com/video.mp4"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call transcript --file-url "https://example.com/video.mp4"
 ```
 
 Use `HOTBEE_API_KEY` or `HOTBEE_TRANSCRIPT_KEY`.

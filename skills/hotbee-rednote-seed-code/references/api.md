@@ -18,5 +18,5 @@ Expected success fields include `datas[0].qrcode` and `datas[0].url`.
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call rednote-seed-code --dry-run --title "AI工具清单" --content "正文" --image-url "https://example.com/cover.png"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call rednote-seed-code --dry-run --title "AI工具清单" --content "正文" --image-url "https://example.com/cover.png"
 ```

@@ -9,5 +9,5 @@ Verified from HotBee public bundle:
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call bilibili --dry-run --url "https://www.bilibili.com/video/BV..."
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call bilibili --dry-run --url "https://www.bilibili.com/video/BV..."
 ```
