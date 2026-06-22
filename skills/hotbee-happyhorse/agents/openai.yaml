@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee HappyHorse"
+  short_description: "Track HappyHorse contract status safely."
+  default_prompt: "Check whether HappyHorse 1.0 has a verified HotBee endpoint before attempting any call."

@@ -1,0 +1,22 @@
+{
+  "name": "hotbee-api-skills",
+  "version": "1.0.0",
+  "description": "Open Agent Skills and one-command CLI for HotBee API workflows.",
+  "type": "module",
+  "bin": {
+    "hotbee-skills": "bin/hotbee-skills.mjs"
+  },
+  "scripts": {
+    "test": "node ./bin/hotbee-skills.mjs install --dry-run && node ./bin/hotbee-skills.mjs call image2 --dry-run --prompt \"生成一张小红书封面\" && node ./bin/hotbee-skills.mjs call douyin --dry-run --text \"解析这个视频的播放量 https://v.douyin.com/xxxx/\""
+  },
+  "keywords": [
+    "open-agent-skills",
+    "hotbee",
+    "smsz",
+    "douyin",
+    "rednote",
+    "seedance",
+    "image2"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Douyin"
+  short_description: "Collect Douyin data through HotBee APIs."
+  default_prompt: "Use HotBee Douyin to parse the Chinese request and call the matching endpoint."

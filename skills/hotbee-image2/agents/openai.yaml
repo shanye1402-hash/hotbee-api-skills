@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Image2"
+  short_description: "Generate and query Image2 image tasks."
+  default_prompt: "Use HotBee Image2 to submit or dry-run an image generation task."

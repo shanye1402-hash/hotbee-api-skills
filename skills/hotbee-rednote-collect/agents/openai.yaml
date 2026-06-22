@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Rednote"
+  short_description: "Collect Rednote note content."
+  default_prompt: "Use HotBee Rednote to parse a Xiaohongshu note URL."

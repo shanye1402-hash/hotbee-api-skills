@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Seed Code"
+  short_description: "Generate Rednote seed-code pages."
+  default_prompt: "Use HotBee Rednote Seed Code after title, content, and media URLs are confirmed."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Bilibili"
+  short_description: "Collect Bilibili video data."
+  default_prompt: "Use HotBee Bilibili to parse a Bilibili video URL."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Seedance"
+  short_description: "Generate and query Seedance 2.0 videos."
+  default_prompt: "Use HotBee Seedance to submit or dry-run a video generation task."

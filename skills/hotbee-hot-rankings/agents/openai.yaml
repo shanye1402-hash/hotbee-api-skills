@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Hot Rankings"
+  short_description: "Handle hot-ranking requests safely."
+  default_prompt: "Check current hot-ranking sources or report the missing HotBee endpoint contract."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Banana"
+  short_description: "Generate Banana2 / Pro image tasks."
+  default_prompt: "Use HotBee Banana to submit or dry-run a Nano Banana image generation task."

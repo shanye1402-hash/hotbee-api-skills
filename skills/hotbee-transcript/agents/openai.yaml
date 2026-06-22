@@ -1,0 +1,4 @@
+interface:
+  display_name: "HotBee Transcript"
+  short_description: "Convert audio or video to text."
+  default_prompt: "Use HotBee Transcript to convert a media URL to text."
