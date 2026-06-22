@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const API_BASE = "https://www.smsz.xyz/prod-api";
-const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.2";
+const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.3";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -100,10 +100,10 @@ const FEATURES = {
     title: "All-Web Hot Rankings",
     zhName: "HotBee 全网热榜",
     keyEnv: ["HOTBEE_API_KEY"],
-    summary: "Hot ranking workflow with verified Xiaohongshu hot-search endpoint.",
-    summaryZh: "获取小红书热搜榜数据；当前已验证接口为 /tool/hot/xiaohongshu，5 积分/次。",
-    example: 'call hot-rankings --dry-run --text "获取小红书热搜榜"',
-    aiExample: "$hotbee-hot-rankings 获取今天小红书热搜榜数据",
+    summary: "Hot ranking workflow with verified Xiaohongshu, Douyin, Baidu, Weibo, and Bilibili hot endpoints.",
+    summaryZh: "获取小红书、抖音、百度、微博、B站热榜数据；已确认 endpoint 为 /tool/hot/<platform>。",
+    example: 'call hot-rankings --dry-run --text "获取百度和抖音热榜"',
+    aiExample: "$hotbee-hot-rankings 获取今天百度、抖音、小红书热榜数据",
   },
   "rednote-seed-code": {
     skill: "hotbee-rednote-seed-code",
@@ -138,6 +138,39 @@ const ALIASES = {
   seedcode: "rednote-seed-code",
   "seed-code": "rednote-seed-code",
   zhongcao: "rednote-seed-code",
+};
+
+const HOT_RANKING_PLATFORMS = {
+  xiaohongshu: {
+    title: "小红书热搜榜",
+    endpoint: "/tool/hot/xiaohongshu",
+    patterns: [/小红书/i, /xiaohongshu/i, /rednote/i, /\bxhs\b/i],
+    source: "OpenAPI contract",
+  },
+  douyin: {
+    title: "抖音热榜",
+    endpoint: "/tool/hot/douyin",
+    patterns: [/抖音/i, /douyin/i, /\bdy\b/i],
+    source: "no-key endpoint probe",
+  },
+  baidu: {
+    title: "百度热榜",
+    endpoint: "/tool/hot/baidu",
+    patterns: [/百度/i, /baidu/i, /\bbd\b/i],
+    source: "no-key endpoint probe",
+  },
+  weibo: {
+    title: "微博热搜榜",
+    endpoint: "/tool/hot/weibo",
+    patterns: [/微博/i, /weibo/i, /\bwb\b/i],
+    source: "no-key endpoint probe",
+  },
+  bilibili: {
+    title: "B站热榜",
+    endpoint: "/tool/hot/bilibili",
+    patterns: [/B站/i, /哔哩/i, /bilibili/i, /\bbili\b/i],
+    source: "no-key endpoint probe",
+  },
 };
 
 function configureWindowsUtf8Console() {
@@ -180,6 +213,8 @@ function parseOptions(argv) {
     format: optionValue(argv, "--format", "markdown"),
     key: optionValue(argv, "--key", ""),
     text: optionValue(argv, "--text", ""),
+    platform: optionValue(argv, "--platform", ""),
+    platforms: optionValues(argv, "--platform"),
     prompt: optionValue(argv, "--prompt", optionValue(argv, "--text", "")),
     url: optionValue(argv, "--url", ""),
     urls: optionValues(argv, "--url"),
@@ -478,16 +513,57 @@ function douyinPlan(opts, key) {
 
 function hotRankingsPlan(opts, key) {
   const text = opts.text || opts.prompt;
-  const asksOtherPlatform = /抖音|douyin|微博|weibo|b站|bilibili|哔哩|快手|kuaishou/i.test(text);
-  const asksRednotePlatform = /小红书|xiaohongshu|rednote/i.test(text);
-  if (asksOtherPlatform && !asksRednotePlatform) {
-    return [{
+  const requested = new Set();
+  const platformTokens = [
+    ...opts.platforms,
+    ...String(opts.platform || "").split(/[,\s，、]+/),
+  ].filter(Boolean);
+
+  for (const token of platformTokens) {
+    const normalized = token.toLowerCase();
+    if (normalized === "all" || normalized === "全部" || normalized === "全网") {
+      Object.keys(HOT_RANKING_PLATFORMS).forEach((platform) => requested.add(platform));
+      continue;
+    }
+    for (const [platform, meta] of Object.entries(HOT_RANKING_PLATFORMS)) {
+      if (platform === normalized || meta.patterns.some((pattern) => pattern.test(token))) requested.add(platform);
+    }
+  }
+
+  for (const [platform, meta] of Object.entries(HOT_RANKING_PLATFORMS)) {
+    if (meta.patterns.some((pattern) => pattern.test(text))) requested.add(platform);
+  }
+
+  const unsupportedHints = [];
+  const unsupportedPatterns = [
+    [/知乎|zhihu/i, "知乎"],
+    [/头条|toutiao|今日头条/i, "头条"],
+    [/快手|kuaishou/i, "快手"],
+    [/贴吧|tieba/i, "贴吧"],
+  ];
+  for (const [pattern, label] of unsupportedPatterns) {
+    if (pattern.test(text) && !Array.from(requested).some((platform) => HOT_RANKING_PLATFORMS[platform].patterns.some((p) => p.test(label)))) {
+      unsupportedHints.push(label);
+    }
+  }
+
+  if (!requested.size && !unsupportedHints.length && /全网|全部|所有|各平台|多平台|这些|热榜|热搜|trending|ranking/i.test(text)) {
+    Object.keys(HOT_RANKING_PLATFORMS).forEach((platform) => requested.add(platform));
+  }
+  if (!requested.size && !unsupportedHints.length) requested.add("xiaohongshu");
+
+  const requests = Array.from(requested).map((platform) => {
+    const meta = HOT_RANKING_PLATFORMS[platform];
+    return { title: meta.title, transport: "get", endpoint: meta.endpoint, params: { key }, source: meta.source };
+  });
+  if (unsupportedHints.length) {
+    requests.push({
       title: "未验证平台热榜",
       unsupported: true,
-      reason: "当前只接入了 HotBee 小红书热搜榜 endpoint: GET /tool/hot/xiaohongshu。其他平台热榜需要官方 OpenAPI 合同。",
-    }];
+      reason: `暂未确认这些平台的 HotBee endpoint: ${unsupportedHints.join("、")}。已确认平台: 小红书、抖音、百度、微博、B站。`,
+    });
   }
-  return [{ title: "小红书热搜榜", transport: "get", endpoint: "/tool/hot/xiaohongshu", params: { key } }];
+  return requests;
 }
 
 function buildRequests(feature, opts, key) {

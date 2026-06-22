@@ -12,7 +12,7 @@ The current HotBee public API bundle and anonymous `/catalog/apis` response do n
 Use this command to show the current contract status:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call happyhorse --dry-run --prompt "一段电影感产品视频"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call happyhorse --dry-run --prompt "一段电影感产品视频"
 ```
 
 If the user provides an official HotBee HappyHorse endpoint later, update `references/api.md` before enabling live calls.

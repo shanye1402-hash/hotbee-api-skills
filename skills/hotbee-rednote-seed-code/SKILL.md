@@ -10,7 +10,7 @@ description: Use when a user wants to generate Xiaohongshu/Rednote seed-code pub
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
 ```
 
 Use `HOTBEE_API_KEY`, `HOTBEE_REDNOTE_KEY`, `REDNOTE_KEY`, or `SMSZ_REDNOTE_KEY`.

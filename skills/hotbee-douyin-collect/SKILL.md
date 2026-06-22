@@ -10,7 +10,7 @@ description: Use when a user wants to parse or collect Douyin video, comment, cr
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
 ```
 
 Use `HOTBEE_API_KEY` or `HOTBEE_DOUYIN_KEY` for VIP endpoints. Free/no-key endpoints can run without a key.

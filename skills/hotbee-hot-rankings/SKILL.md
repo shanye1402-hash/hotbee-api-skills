@@ -1,25 +1,35 @@
 ---
 name: hotbee-hot-rankings
-description: Use when a user asks for HotBee all-web hot rankings, 热榜, 热搜, trending topics, or Xiaohongshu/Rednote hot-search ranking data. Supports the verified HotBee Xiaohongshu hot-search endpoint and should not invent unverified platform endpoints.
+description: Use when a user asks for HotBee all-web hot rankings, 热榜, 热搜, trending topics, or platform hot-search ranking data. Supports confirmed HotBee endpoints for Xiaohongshu, Douyin, Baidu, Weibo, and Bilibili hot rankings; do not invent unverified platform endpoints.
 ---
 
 # HotBee Hot Rankings
 
 中文名：HotBee 全网热榜
 
-Use the verified Xiaohongshu hot-search endpoint:
+Use the confirmed HotBee hot-ranking endpoints:
 
 - Base: `https://www.smsz.xyz/prod-api`
-- Endpoint: `GET /tool/hot/xiaohongshu`
+- Endpoints:
+  - `GET /tool/hot/xiaohongshu`
+  - `GET /tool/hot/douyin`
+  - `GET /tool/hot/baidu`
+  - `GET /tool/hot/weibo`
+  - `GET /tool/hot/bilibili`
 - Required query: `key`
-- Cost: 5 points per call
+- Known cost: Xiaohongshu OpenAPI states 5 points per call. Treat other confirmed hot endpoints as paid unless HotBee documents otherwise.
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call hot-rankings --dry-run --text "获取小红书热搜榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --dry-run --text "获取百度和抖音热榜"
 ```
 
-Run live only when `HOTBEE_API_KEY` is available or the user passes `--key`. Return the API data fields `datas_info[].title`, `score`, `word_type`, `rank_change`, plus `time` and `tips`.
+For all confirmed platforms:
 
-If the user asks for other platforms or true cross-platform aggregation, explain that this skill currently has a verified Xiaohongshu hot-search endpoint only. Do not invent unverified platform endpoints.
+- Select platform from Chinese text or `--platform`.
+- Use all confirmed platforms when the user asks for `全网`, `全部`, `所有`, `各平台`, or `多平台`.
+- Run live only when `HOTBEE_API_KEY` is available or the user passes `--key`.
+- Return API fields such as `datas_info[].title`, `score`, `word_type`, `rank_change`, plus `time` and `tips` when present.
+
+If the user asks for Zhihu, Toutiao, Kuaishou, Tieba, or another unsupported platform, explain that the HotBee endpoint is not confirmed and ask for the official OpenAPI contract.
 
 Read `references/api.md` for the exact request and response contract.

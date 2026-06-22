@@ -1,13 +1,13 @@
 {
   "name": "hotbee-api-skills",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Open Agent Skills and one-command CLI for HotBee API workflows.",
   "type": "module",
   "bin": {
     "hotbee-skills": "bin/hotbee-skills.mjs"
   },
   "scripts": {
-    "test": "node ./bin/hotbee-skills.mjs install --dry-run && node ./bin/hotbee-skills.mjs guide hot-rankings && node ./bin/hotbee-skills.mjs call image2 --dry-run --prompt \"生成一张小红书封面\" && node ./bin/hotbee-skills.mjs call douyin --dry-run --text \"解析这个视频的播放量 https://v.douyin.com/xxxx/\" && node ./bin/hotbee-skills.mjs call hot-rankings --dry-run --text \"获取小红书热搜榜\""
+    "test": "node ./bin/hotbee-skills.mjs install --dry-run && node ./bin/hotbee-skills.mjs guide hot-rankings && node ./bin/hotbee-skills.mjs call image2 --dry-run --prompt \"生成一张小红书封面\" && node ./bin/hotbee-skills.mjs call douyin --dry-run --text \"解析这个视频的播放量 https://v.douyin.com/xxxx/\" && node ./bin/hotbee-skills.mjs call hot-rankings --dry-run --text \"获取百度和抖音热榜\" && node ./bin/hotbee-skills.mjs call hot-rankings --dry-run --text \"全网热榜\""
   },
   "keywords": [
     "open-agent-skills",

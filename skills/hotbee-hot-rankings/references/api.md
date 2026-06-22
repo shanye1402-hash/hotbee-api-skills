@@ -2,29 +2,45 @@
 
 Base: `https://www.smsz.xyz/prod-api`
 
-## Verified endpoint
-
-### Xiaohongshu hot-search ranking
+All confirmed hot-ranking endpoints use:
 
 - Method: `GET`
-- Endpoint: `/tool/hot/xiaohongshu`
-- Category: 全网热榜
-- Summary: 获取小红书热搜榜数据
-- Cost: 5 points per call
-- Required query:
-  - `key`: HotBee card key. Read from `HOTBEE_API_KEY` by default.
+- Required query: `key`
+- Default key source: `HOTBEE_API_KEY`
+
+## Confirmed endpoints
+
+| Platform | Chinese name | Endpoint | Confirmation |
+| --- | --- | --- | --- |
+| `xiaohongshu` | 小红书热搜榜 | `/tool/hot/xiaohongshu` | OpenAPI contract, 5 points per call |
+| `douyin` | 抖音热榜 | `/tool/hot/douyin` | no-key probe returned missing `key` |
+| `baidu` | 百度热榜 | `/tool/hot/baidu` | no-key probe returned missing `key` |
+| `weibo` | 微博热搜榜 | `/tool/hot/weibo` | no-key probe returned missing `key` |
+| `bilibili` | B站热榜 | `/tool/hot/bilibili` | no-key probe returned missing `key` |
 
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.2 call hot-rankings --dry-run --text "获取小红书热搜榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --dry-run --text "获取百度和抖音热榜"
 ```
 
-Expected response shape:
+All confirmed platforms:
+
+```bash
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --dry-run --text "全网热榜"
+```
+
+Specific platform flag:
+
+```bash
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.3 call hot-rankings --dry-run --platform baidu --platform douyin
+```
+
+Expected response shape follows the Xiaohongshu OpenAPI pattern when fields are present:
 
 ```json
 {
-  "msg": "成功获取小红书热榜数据...",
+  "msg": "成功获取热榜数据...",
   "code": 200,
   "datas_info": [
     {
@@ -41,4 +57,6 @@ Expected response shape:
 
 ## Current scope
 
-This package has a verified HotBee endpoint for Xiaohongshu hot-search ranking only. If a user asks for Douyin, Bilibili, Weibo, or true cross-platform hot rankings, do not invent endpoints; ask for the official OpenAPI contract or use browsing/search tools with citations when available.
+Confirmed: 小红书、抖音、百度、微博、B站。
+
+Not confirmed from public HotBee docs or no-key probes: 知乎、头条、快手、贴吧 and other platforms. Do not invent endpoints for them; ask for the official OpenAPI contract or use browsing/search tools with citations when available.
