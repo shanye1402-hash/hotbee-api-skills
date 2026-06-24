@@ -12,5 +12,5 @@ Verified from HotBee public bundle and local working skill.
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call image2 --prompt "产品海报，干净高级" --aspect-ratio 3:4 --resolution 1K
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call image2 --prompt "产品海报，干净高级" --aspect-ratio 3:4 --resolution 1K
 ```

@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
 const API_BASE = "https://www.smsz.xyz/prod-api";
-const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.4";
+const PACKAGE_SPEC = "github:shanye1402-hash/hotbee-api-skills#v1.0.5";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, "..");
@@ -19,7 +19,7 @@ const FEATURES = {
     skill: "hotbee-image2",
     title: "Image2",
     zhName: "HotBee Image2 图片生成",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_IMAGE2_KEY", "SMSZ_IMAGE2_KEY", "IMAGE2_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "GPT Image 2 image generation and task query.",
     summaryZh: "生成图片、参考图生图、查询 Image2 异步任务结果。",
     example: 'call image2 --prompt "生成一张小红书封面" --dry-run',
@@ -29,7 +29,7 @@ const FEATURES = {
     skill: "hotbee-banana",
     title: "Banana2 / Banana Pro",
     zhName: "HotBee Banana2/Pro 图片生成",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_IMAGE2_KEY", "SMSZ_IMAGE2_KEY", "IMAGE2_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Nano Banana 2 / Pro image generation using the shared Image2 query flow.",
     summaryZh: "调用 Nano Banana / Banana Pro 生成图片，并复用 Image2 查询流程。",
     example: 'call banana --prompt "产品主图" --model nano-banana-pro --dry-run',
@@ -39,7 +39,7 @@ const FEATURES = {
     skill: "hotbee-seedance",
     title: "Seedance 2.0",
     zhName: "HotBee Seedance 2.0 视频生成",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_SEEDANCE_KEY", "SEEDANCE_API_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Seedance 2.0 video generation and task query.",
     summaryZh: "生成 Seedance 2.0 视频，支持文生视频、参考图/视频/音频和任务查询。",
     example: 'call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5 --dry-run',
@@ -49,7 +49,7 @@ const FEATURES = {
     skill: "hotbee-happyhorse",
     title: "HappyHorse 1.0",
     zhName: "HotBee HappyHorse 1.0 视频生成",
-    keyEnv: ["MUAPI_API_KEY", "HAPPYHORSE_API_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "HappyHorse 1.0 video generation. HotBee endpoint is not publicly verified in the current catalog.",
     summaryZh: "记录 HappyHorse 1.0 的合同状态；当前公开目录未验证 HotBee endpoint。",
     example: 'call happyhorse --dry-run --prompt "电影感产品视频"',
@@ -59,7 +59,7 @@ const FEATURES = {
     skill: "hotbee-douyin-collect",
     title: "Douyin Collect",
     zhName: "HotBee 抖音数据采集",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_DOUYIN_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Douyin video, comments, creator, hashtag data.",
     summaryZh: "按中文需求解析抖音视频链接或主页链接，返回视频、评论、达人、粉丝画像、话题等数据。",
     example: 'call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/" --dry-run',
@@ -69,7 +69,7 @@ const FEATURES = {
     skill: "hotbee-rednote-collect",
     title: "Rednote Collect",
     zhName: "HotBee 小红书数据采集",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_REDNOTE_KEY", "REDNOTE_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Xiaohongshu/Rednote note content collection.",
     summaryZh: "解析小红书笔记链接，返回笔记内容和已验证接口支持的数据。",
     example: 'call rednote --url "https://www.xiaohongshu.com/explore/xxxx" --dry-run',
@@ -79,7 +79,7 @@ const FEATURES = {
     skill: "hotbee-bilibili-collect",
     title: "Bilibili Collect",
     zhName: "HotBee B站数据采集",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_BILIBILI_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Bilibili video data collection.",
     summaryZh: "解析 B站视频链接，返回视频数据。",
     example: 'call bilibili --url "https://www.bilibili.com/video/BV..." --dry-run',
@@ -89,7 +89,7 @@ const FEATURES = {
     skill: "hotbee-transcript",
     title: "Audio/Video Transcript",
     zhName: "HotBee 音视频转文字",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_TRANSCRIPT_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Audio/video to text through HotBee speechToText.",
     summaryZh: "把音频或视频 URL 转成文字稿。",
     example: 'call transcript --file-url "https://example.com/video.mp4" --dry-run',
@@ -109,7 +109,7 @@ const FEATURES = {
     skill: "hotbee-rednote-seed-code",
     title: "Rednote Seed Code",
     zhName: "HotBee 小红书种草码",
-    keyEnv: ["HOTBEE_API_KEY", "HOTBEE_REDNOTE_KEY", "REDNOTE_KEY", "SMSZ_REDNOTE_KEY"],
+    keyEnv: ["HOTBEE_API_KEY"],
     summary: "Create Rednote seed-code publish pages and QR codes.",
     summaryZh: "根据标题、正文和媒体 URL 生成小红书种草码发布页或二维码。",
     example: 'call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png" --dry-run',
@@ -211,7 +211,6 @@ function parseOptions(argv) {
     dryRun: hasFlag(argv, "--dry-run"),
     raw: hasFlag(argv, "--raw"),
     format: optionValue(argv, "--format", "markdown"),
-    key: optionValue(argv, "--key", ""),
     text: optionValue(argv, "--text", ""),
     platform: optionValue(argv, "--platform", ""),
     platforms: optionValues(argv, "--platform"),
@@ -244,12 +243,8 @@ function parseOptions(argv) {
   };
 }
 
-function keyFor(feature, opts) {
-  if (opts.key) return opts.key;
-  for (const envName of FEATURES[feature].keyEnv) {
-    if (process.env[envName]) return process.env[envName];
-  }
-  return "";
+function keyFor() {
+  return process.env.HOTBEE_API_KEY || "";
 }
 
 function redact(value) {
@@ -314,8 +309,7 @@ function formatFeatureLines(features, opts = {}) {
 function printInstallGuide(features, roots, opts = {}) {
   const rootLines = roots.map((root) => `  - ${root}`).join("\n");
   const selected = features.filter((feature) => FEATURES[feature]);
-  const keyNames = Array.from(new Set(selected.flatMap((feature) => FEATURES[feature].keyEnv)));
-  const keyLine = keyNames.length ? keyNames.join(", ") : "HOTBEE_API_KEY";
+  const keyLine = "HOTBEE_API_KEY";
   const directLines = selected.map((feature) => `  - ${FEATURES[feature].zhName}: npx -y ${PACKAGE_SPEC} ${FEATURES[feature].example}`).join("\n");
   const aiLines = selected.map((feature) => {
     const meta = FEATURES[feature];
@@ -337,8 +331,8 @@ ${rootLines || "  - 未检测到安装目录"}
 ${formatFeatureLines(selected, opts)}
 
 3. 设置 HotBee 卡密
-   付费接口会优先读取环境变量，不会把真实卡密写进技能包。
-   当前技能可能用到: ${keyLine}
+   付费接口只读取 HOTBEE_API_KEY 环境变量，不会把真实卡密写进技能包。
+   所有付费接口只读取: ${keyLine}
 
    PowerShell:
    [Environment]::SetEnvironmentVariable("HOTBEE_API_KEY", "YOUR_KEY", "User")
@@ -358,7 +352,7 @@ ${aiLines || "  - 先运行 list 查看可用技能。"}
 ${directLines || "  - 先运行 list 查看可用命令。"}
 
 6. 常见排查
-   - 提示缺少 key: 先设置 HOTBEE_API_KEY，或使用该功能支持的专用环境变量。
+   - 提示缺少 key: 先设置 HOTBEE_API_KEY，然后重启终端或 AI 客户端。
    - 中文乱码: Windows 终端建议使用 Windows Terminal / PowerShell 7；本安装器会自动切到 UTF-8 控制台。
    - 不想消耗点数: 先加 --dry-run 预览请求。
    - 只想看某个技能: npx -y ${PACKAGE_SPEC} guide douyin
@@ -645,7 +639,7 @@ async function callCommand() {
   const feature = normalizeFeature(args[1] || "");
   if (!FEATURES[feature]) throw new Error(`Unknown feature: ${args[1] || ""}`);
   const opts = parseOptions(args.slice(2));
-  const key = keyFor(feature, opts);
+  const key = keyFor(feature);
   const requests = buildRequests(feature, opts, key);
   const results = [];
   for (const request of requests) {
@@ -655,7 +649,7 @@ async function callCommand() {
     }
     const envelope = { title: request.title, endpoint: request.endpoint, transport: request.transport, request: { params: request.params, fields: request.fields } };
     if (requestNeedsKey(request) && !key && !opts.dryRun) {
-      results.push({ ...envelope, skipped: true, status: "missing-key", reason: `缺少卡密。请先设置其中一个环境变量: ${FEATURES[feature].keyEnv.join(", ")}` });
+      results.push({ ...envelope, skipped: true, status: "missing-key", reason: "缺少 HOTBEE_API_KEY。请先设置环境变量 HOTBEE_API_KEY，然后重启终端或 AI 客户端。" });
       continue;
     }
     if (opts.dryRun) {

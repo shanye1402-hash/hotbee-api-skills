@@ -13,5 +13,5 @@ Contract source: local HotBee integration memory and existing linked-account imp
 Example:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call banana --dry-run --prompt "把参考图做成电商主图" --model nano-banana-pro --image-url https://example.com/ref.png
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call banana --dry-run --prompt "把参考图做成电商主图" --model nano-banana-pro --image-url https://example.com/ref.png
 ```

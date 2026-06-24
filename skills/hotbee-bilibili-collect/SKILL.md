@@ -10,9 +10,9 @@ description: Use when a user wants to parse or collect Bilibili video data throu
 Use the package CLI:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call bilibili --url "https://www.bilibili.com/video/BV..."
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call bilibili --url "https://www.bilibili.com/video/BV..."
 ```
 
-Use `HOTBEE_API_KEY` or `HOTBEE_BILIBILI_KEY`.
+Use `HOTBEE_API_KEY` only.
 
 Read `references/api.md` for the verified endpoint.

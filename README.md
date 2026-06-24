@@ -11,7 +11,7 @@ One GitHub project hosts all HotBee-related Open Agent Skills. 安装后会打�
 ## Install All
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install
 ```
 
 After install, the CLI prints:
@@ -25,23 +25,23 @@ After install, the CLI prints:
 You can reopen the guide anytime:
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 guide
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 guide douyin
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 guide
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 guide douyin
 ```
 
 ## Install One Skill
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install image2
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install banana
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install seedance
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install happyhorse
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install douyin
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install rednote
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install bilibili
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install transcript
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install hot-rankings
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install rednote-seed-code
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install image2
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install banana
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install seedance
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install happyhorse
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install douyin
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install rednote
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install bilibili
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install transcript
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install hot-rankings
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 install rednote-seed-code
 ```
 
 ## Skill Names / 技能中文名
@@ -61,7 +61,7 @@ npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 install rednote-seed-code
 
 ## Set Key
 
-Most paid endpoints read a shared key:
+All paid endpoints read only one environment variable: `HOTBEE_API_KEY`.
 
 PowerShell:
 
@@ -75,21 +75,21 @@ macOS/Linux:
 export HOTBEE_API_KEY="YOUR_KEY"
 ```
 
-Feature-specific env vars are also supported, for example `HOTBEE_IMAGE2_KEY`, `HOTBEE_SEEDANCE_KEY`, `HOTBEE_DOUYIN_KEY`, `HOTBEE_REDNOTE_KEY`, `HOTBEE_BILIBILI_KEY`, and `HOTBEE_TRANSCRIPT_KEY`.
+Do not pass keys on the command line or store real keys in skill files. If `HOTBEE_API_KEY` is missing, live paid calls return setup guidance and do not call the paid endpoint.
 
 ## Direct Calls
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call image2 --prompt "生成一张小红书封面"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call banana --prompt "产品主图" --model nano-banana-pro
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call bilibili --url "https://www.bilibili.com/video/BV..."
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call transcript --file-url "https://example.com/video.mp4"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call hot-rankings --text "获取百度和抖音热榜"
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call hot-rankings --platform all --dry-run
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call image2 --prompt "生成一张小红书封面"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call banana --prompt "产品主图" --model nano-banana-pro
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call seedance --prompt "产品在阳光厨房里缓慢旋转" --ratio 9:16 --duration 5
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call douyin --text "解析这个视频的播放量和评论 https://v.douyin.com/xxxx/"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call rednote --url "https://www.xiaohongshu.com/explore/xxxx"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call bilibili --url "https://www.bilibili.com/video/BV..."
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call transcript --file-url "https://example.com/video.mp4"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call hot-rankings --text "获取百度和抖音热榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call hot-rankings --platform all --dry-run
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call rednote-seed-code --title "标题" --content "正文" --image-url "https://example.com/cover.png"
 ```
 
 Use `--dry-run` to preview without spending points.

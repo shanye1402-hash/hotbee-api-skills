@@ -20,14 +20,14 @@ Use the confirmed HotBee hot-ranking endpoints:
 - Known cost: Xiaohongshu OpenAPI states 5 points per call. Treat other confirmed hot endpoints as paid unless HotBee documents otherwise.
 
 ```bash
-npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.4 call hot-rankings --dry-run --text "获取百度和抖音热榜"
+npx -y github:shanye1402-hash/hotbee-api-skills#v1.0.5 call hot-rankings --dry-run --text "获取百度和抖音热榜"
 ```
 
 For all confirmed platforms:
 
 - Select platform from Chinese text or `--platform`.
 - Use all confirmed platforms when the user asks for `全网`, `全部`, `所有`, `各平台`, or `多平台`.
-- Run live only when `HOTBEE_API_KEY` is available or the user passes `--key`.
+- Run live only when `HOTBEE_API_KEY` is available.
 - Return API fields such as `datas_info[].title`, `score`, `word_type`, `rank_change`, plus `time` and `tips` when present.
 
 If the user asks for Zhihu, Toutiao, Kuaishou, Tieba, or another unsupported platform, explain that the HotBee endpoint is not confirmed and ask for the official OpenAPI contract.
